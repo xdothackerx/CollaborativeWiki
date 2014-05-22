@@ -11,8 +11,12 @@
 </p>
 
 <p>
-  <strong>Author:</strong>
-  <%= @question.user_id %>
+  <strong>Contributors:</strong>
+  <ul>
+    <% @question.users.each do |user| %>
+    <li><%= user.email %></li>
+    <% end %>
+  </ul>
 </p>
 
 <%= link_to 'Edit', edit_question_path(@question) %> |

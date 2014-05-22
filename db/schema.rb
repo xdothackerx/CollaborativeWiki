@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140522025359) do
+ActiveRecord::Schema.define(version: 20140522170804) do
 
   create_table "questions", force: true do |t|
     t.string   "question"
@@ -21,9 +21,11 @@ ActiveRecord::Schema.define(version: 20140522025359) do
   end
 
   create_table "questions_users", id: false, force: true do |t|
-    t.integer "question_id"
-    t.integer "user_id"
+    t.integer "question_id", null: false
+    t.integer "user_id",     null: false
   end
+
+  add_index "questions_users", ["question_id", "user_id"], name: "index_questions_users_on_question_id_and_user_id"
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
